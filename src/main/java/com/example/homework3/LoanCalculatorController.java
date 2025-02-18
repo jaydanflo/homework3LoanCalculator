@@ -20,7 +20,13 @@ public class LoanCalculatorController {
     private Label monthlyPaymentLabel;
 
     @FXML
+    private Label monthlyPaymentAmount;
+
+    @FXML
     private Label totalPaymentLabel;
+
+    @FXML
+    private Label totalPaymentAmount;
 
     @FXML
     public void computePayment(ActionEvent event) {
@@ -36,12 +42,12 @@ public class LoanCalculatorController {
             double monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -totalMonths));
             double totalPayment = monthlyPayment * totalMonths;
 
-            monthlyPaymentLabel.setText("Monthly Payment: $%.2f" + monthlyPayment);
-            totalPaymentLabel.setText("Total Payment: $%.2f" + totalPayment);
+            monthlyPaymentAmount.setText("$" + String.format("%.2f", monthlyPayment));
+            totalPaymentAmount.setText("$" + String.format("%.2f", totalPayment));
 
         } catch (Exception e) {
-            monthlyPaymentLabel.setText("Invalid input!");
-            totalPaymentLabel.setText("");
+            monthlyPaymentAmount.setText("Invalid input!");
+            totalPaymentAmount.setText("");
         }
     }
 
